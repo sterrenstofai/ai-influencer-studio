@@ -1,0 +1,117 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ── Sterrenstof Design Tokens ── */
+:root {
+  --bg:            #EDE8DF;
+  --bg-secondary:  #E4DFD6;
+  --bg-tertiary:   #D8D2C9;
+  --surface:       #FFFFFF;
+  --surface-hover: #F5F2ED;
+  --border:        rgba(0,0,0,0.16);
+  --border-subtle: rgba(0,0,0,0.09);
+  --text-primary:  #111111;
+  --text-secondary:#666666;
+  --text-tertiary: #999999;
+  --accent:        #E8152A;
+  --accent-hover:  #C4101F;
+  --accent-light:  rgba(232,21,42,0.08);
+  --shadow-sm:     0 1px 3px rgba(0,0,0,0.08);
+  --shadow-md:     0 4px 16px rgba(0,0,0,0.10);
+  --shadow-lg:     0 12px 40px rgba(0,0,0,0.12);
+  --radius-sm:     2px;
+  --radius-md:     4px;
+  --radius-lg:     6px;
+  --radius-xl:     8px;
+  --nav-h:         48px;
+}
+
+/* Dark mode — behoud voor interne app schermen */
+[data-theme="dark"] {
+  --bg:            #111111;
+  --bg-secondary:  #1A1A1A;
+  --bg-tertiary:   #222222;
+  --surface:       #1A1A1A;
+  --surface-hover: #222222;
+  --border:        rgba(255,255,255,0.12);
+  --border-subtle: rgba(255,255,255,0.06);
+  --text-primary:  rgba(255,255,255,0.92);
+  --text-secondary:rgba(255,255,255,0.48);
+  --text-tertiary: rgba(255,255,255,0.26);
+  --accent:        #E8152A;
+  --accent-hover:  #FF2438;
+  --accent-light:  rgba(232,21,42,0.14);
+  --shadow-sm:     0 1px 3px rgba(0,0,0,0.5);
+  --shadow-md:     0 4px 16px rgba(0,0,0,0.6);
+  --shadow-lg:     0 12px 40px rgba(0,0,0,0.7);
+}
+
+html, body {
+  height: 100%;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overscroll-behavior: none;
+}
+
+#root { height: 100%; }
+
+button { font-family: inherit; cursor: pointer; border: none; outline: none; background: none; }
+
+input, textarea, select {
+  font-family: inherit;
+  outline: none;
+  transition: border-color 0.15s;
+}
+
+input:focus, textarea:focus, select:focus {
+  border-color: var(--accent) !important;
+  box-shadow: 0 0 0 2px rgba(232,21,42,0.12);
+}
+
+[data-theme="dark"] input:focus,
+[data-theme="dark"] textarea:focus,
+[data-theme="dark"] select:focus {
+  box-shadow: 0 0 0 2px rgba(232,21,42,0.20);
+}
+
+select { cursor: pointer; }
+a { text-decoration: none; color: inherit; }
+
+::-webkit-scrollbar { width: 4px; height: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.18); border-radius: 2px; }
+.dark-scroll::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.15); }
+
+/* ── Animations ── */
+@keyframes cs-pulse  { 0%,100%{opacity:.5} 50%{opacity:1} }
+@keyframes cs-shimmer{ 0%{transform:translateX(-100%)} 100%{transform:translateX(100%)} }
+@keyframes cs-spin   { from{transform:rotate(0deg)} to{transform:rotate(360deg)} }
+@keyframes spin      { to{transform:rotate(360deg)} }
+@keyframes theme-btn-press { 0%{transform:scale(1)} 25%{transform:scale(0.72)} 100%{transform:scale(1)} }
+@keyframes hf-pulse  { 0%,100%{box-shadow:0 0 0 0 rgba(232,21,42,0)} 50%{box-shadow:0 0 0 6px rgba(232,21,42,0.12)} }
+@keyframes hf-float  { 0%,100%{transform:translateY(0px)} 50%{transform:translateY(-3px)} }
+@keyframes progress-slide { from{background-position:100% 0} to{background-position:-100% 0} }
+@keyframes ping      { 0%{transform:scale(1);opacity:.35} 80%,100%{transform:scale(2.4);opacity:0} }
+
+/* ── Responsive grids ── */
+.desc-grid-2 { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+.desc-grid-3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:10px; }
+.inf-img-grid { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; }
+
+@media (max-width:700px) {
+  .desc-grid-2, .desc-grid-3 { grid-template-columns:1fr; }
+  .inf-img-grid { grid-template-columns:1fr 1fr; gap:10px; }
+}
+
+/* ── Nav mobile ── */
+@media (max-width:640px) {
+  .nav-root { padding:0 16px !important; }
+  .nav-link  { display:none !important; }
+  .nav-brand-label { display:none !important; }
+}
